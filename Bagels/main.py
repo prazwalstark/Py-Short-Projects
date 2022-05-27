@@ -9,20 +9,26 @@ print('Fermi       -   One digit is correct and is in the right position.')
 print('Bagels      -   No digit is correct.')
 print('I have thought of a number.\nHere You Go!\nYou got 10 guesses.\n\n')
 while True: #Main Game Loop   
+    ca=correct_answer()
     for i in range(1, 11):
-        print('Guess #{number}'.format(number = i))
-        ca=correct_answer()
+        print('Guess #{number}:'.format(number = i))
         ia=input_answer()
         answer = get_hints(ca,ia)
         if answer == 'You Got it!!':
             print('You Got it!!')
             break
-        print(get_hints(ca,ia))
-        
-    print('Hey, You ran out of chances.')
-    print('The correct answer was {ans}'.format(ans=input_answer))
+        else:
+            if i!=10:
+                print(get_hints(ca,ia))
+            else:
+                print('Hey, You ran out of chances.')
+                print('The correct answer was {ans}'.format(ans=ca))
+                print('\nDo you want to play again?(Yes/No)')
+                ques=input()
+                if not ques.upper().startswith('Y'):   
+                    break
     print('\nDo you want to play again?(Yes/No)')
     ques=input()
-    if not ques.upper().startswith('Y'):
-        break
+    if not ques.upper().startswith('Y'):   
+        break       
 print('Thanks For Playing!!')
